@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DevOps Interview Quiz</title>
+<style>
+:root{--bg1:#f5f3ff;--bg2:#e0f2fe;--card:rgba(255,255,255,.78);--tx:#1e1b3a;--mu:#64648a;--ac:#7c3aed;--ac2:#ec4899;--ok:#10b981;--no:#ef4444;--bd:rgba(124,58,237,.2);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0e0b24;--bg2:#101a38;--card:rgba(30,26,64,.75);--tx:#f1efff;--mu:#a5a3cc;--ac:#a78bfa;--bd:rgba(167,139,250,.25)}}
+:root[data-theme="dark"]{--bg1:#0e0b24;--bg2:#101a38;--card:rgba(30,26,64,.75);--tx:#f1efff;--mu:#a5a3cc;--ac:#a78bfa;--bd:rgba(167,139,250,.25)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg1));background-size:300% 300%;animation:bg 14s ease infinite;overflow-x:hidden}
+body::before,body::after{content:"";position:fixed;width:46vmax;height:46vmax;border-radius:50%;filter:blur(70px);opacity:.35;z-index:-1;animation:fl 18s ease-in-out infinite alternate}
+body::before{background:#ec4899;top:-15vmax;left:-12vmax}body::after{background:#06b6d4;bottom:-18vmax;right:-14vmax;animation-delay:-8s}
+@keyframes bg{50%{background-position:100% 50%}}@keyframes fl{to{transform:translate(8vmax,6vmax) scale(1.2)}}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.97)}}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}@keyframes glow{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--ok) 30%,transparent)}}
+main{max-width:700px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.1;margin:14px 0 6px}h2{font-size:1.2rem;margin:0 0 6px}
+.g{background:linear-gradient(90deg,#f59e0b,#ec4899,#8b5cf6,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.s{color:var(--mu);margin:0 0 22px}
+.card{background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(80,40,160,.12)}
+.pop{animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}.shake{animation:shake .4s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cat:last-child{grid-column:1/-1}
+button{font:inherit;color:inherit;cursor:pointer}
+.cat{position:relative;overflow:hidden;color:#fff;border:0;border-radius:20px;padding:18px;text-align:left;min-height:130px;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 24px color-mix(in srgb,var(--c1) 40%,transparent);transition:transform .25s,box-shadow .25s;animation:pop .5s backwards}
+.cat:nth-child(2){animation-delay:.07s}.cat:nth-child(3){animation-delay:.14s}.cat:nth-child(4){animation-delay:.21s}.cat:nth-child(5){animation-delay:.28s}
+.cat:hover{transform:translateY(-6px) rotate(-1deg) scale(1.03)}.cat:active{transform:scale(.97)}
+.cat em{font-style:normal;font-size:2.2rem;display:block;transition:transform .3s}.cat:hover em{transform:scale(1.3) rotate(10deg)}
+.cat b{font-size:1.15rem;display:block}.cat span{opacity:.9;font-size:.85rem}.cat i{position:absolute;top:12px;right:12px;font-style:normal;background:rgba(255,255,255,.25);border-radius:99px;padding:2px 10px;font-size:.8rem}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:13px 15px;margin-top:11px;transition:transform .15s,border-color .15s}
+.opt:hover:not(:disabled){border-color:var(--ac);transform:translateX(6px)}.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card));animation:glow .8s}.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,var(--card))}
+.bar,.tm{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;margin-bottom:12px}.bar i,.tm i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .4s}
+.tm i{width:100%;transition:none;background:linear-gradient(90deg,#10b981,#f59e0b)}.tm i.lo{background:#ef4444}
+.row,.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.chip{background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:4px 12px;font-size:.85rem}
+.pri{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border:0;border-radius:12px;padding:12px 24px;margin-top:14px;font-weight:600;box-shadow:0 6px 18px rgba(124,58,237,.35);transition:transform .15s}.pri:hover{transform:translateY(-2px)}
+.big{font-size:3.6rem;font-weight:800;background:linear-gradient(90deg,#f59e0b,#ec4899,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fb{font-weight:600;margin:12px 0 0}li{margin-bottom:10px}small{color:var(--mu)}
+input{display:block;width:100%;font:inherit;color:inherit;background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:13px;margin-bottom:12px;outline:0;transition:border-color .2s}input:focus{border-color:var(--ac)}
+.err{color:var(--no);min-height:1.4em;font-size:.9rem}.lnk{background:none;border:0;color:var(--ac);padding:11px 6px;font-weight:600}
+.lb{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;margin-bottom:8px;background:var(--card);border:1px solid var(--bd);animation:pop .4s backwards}
+.lb.me{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}.lb .rk{font-size:1.4rem;width:2.2rem;text-align:center;font-weight:700}.lb .nm{flex:1;font-weight:600}.lb .pt{font-weight:800;color:var(--ac)}
+.lb:nth-child(1){background:linear-gradient(90deg,rgba(245,158,11,.25),var(--card))}.lb:nth-child(2){background:linear-gradient(90deg,rgba(148,163,184,.3),var(--card))}.lb:nth-child(3){background:linear-gradient(90deg,rgba(194,120,60,.25),var(--card))}
+
+.bt{display:flex;justify-content:center;margin:0 0 4px}.bt svg{filter:drop-shadow(0 10px 20px rgba(139,92,246,.35));animation:bob 4s ease-in-out infinite}.bt.shake svg{animation:shake .4s}
+@keyframes bob{50%{transform:translateY(-6px) rotate(1.5deg)}}@keyframes wv{to{transform:translateX(70px)}}@keyframes rise{from{transform:translateY(0);opacity:.9}to{transform:translateY(-110px);opacity:0}}@keyframes cork{to{transform:translate(34px,-160px) rotate(70deg);opacity:0}}
+.wv{animation:wv 2.2s linear infinite}.bb{fill:rgba(255,255,255,.7);animation:rise 3s linear infinite}.popc{transform-box:fill-box;transform-origin:center;animation:cork .8s ease-in forwards}
+.room{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 0,#1b1740,#07061a 70%);border-radius:26px;padding:0 16px 22px;color:#f1efff;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.room h1{margin-top:0}.lamp{display:block;margin:0 auto;background:none;border:0;cursor:pointer;transform-origin:top center;animation:sway 4s ease-in-out infinite;padding:0}
+@keyframes sway{50%{transform:rotate(2.5deg)}}@keyframes pl{50%{transform:translateY(16px)}}.pull .chain{animation:pl .35s}
+.bulb{fill:#4b5563;transition:fill .4s,filter .4s}.room.on .bulb{fill:#fde047;filter:drop-shadow(0 0 16px #fde047)}
+.cone{position:absolute;left:50%;top:120px;width:min(100%,560px);height:430px;transform:translateX(-50%);clip-path:polygon(41% 0,59% 0,100% 100%,0 100%);background:linear-gradient(rgba(253,224,71,.55),rgba(253,224,71,0));opacity:0;transition:opacity .7s;pointer-events:none}.room.on .cone{opacity:1}
+.hint{text-align:center;color:#c4b5fd;margin:2px 0 14px;position:relative}
+.room .card{position:relative;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);box-shadow:none;opacity:.3;filter:blur(2px) brightness(.6);transition:opacity .7s,filter .7s;margin-bottom:0}.room.on .card{opacity:1;filter:none;background:rgba(255,255,255,.12)}
+.room input{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}.room input::placeholder{color:#c9c6e6}
+@media(prefers-reduced-motion:reduce){*,body::before,body::after{animation:none!important;transition:none!important}}
+</style></head><body><main id="app"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const D={
+"AWS":[["What is an AMI?","A template with the OS and configuration used to launch an EC2 instance."],["What is an Availability Zone?","An isolated location within a Region containing one or more data centers."],["What is S3?","Object storage for files, backups, logs, static assets and data lakes."],["What is an IAM role?","An identity with permissions that trusted users or services assume for temporary credentials."],["What is least privilege?","Grant only the permissions required to perform a specific task."],["What is a NAT Gateway?","Lets private-subnet resources start outbound IPv4 connections without accepting inbound internet-initiated ones."],["Security Group vs NACL?","Security Groups are stateful and attach to interfaces; NACLs are stateless and apply per subnet."],["What is CloudTrail?","Records AWS account activity and API events for auditing."],["What is a public subnet?","A subnet whose route table has a route to an internet gateway."],["What is AWS KMS?","A service to create and manage cryptographic keys that protect data."],["What is a VPC endpoint?","A private connection from a VPC to supported AWS services without a public internet path."],["What is an SCP?","A policy setting maximum permissions for accounts in an organization; it grants nothing itself."],["ALB returns HTTP 502. What do you check first?","Target health, backend port, health-check path and application logs."],["EC2 cannot reach the internet. What do you check?","Route table, IGW/NAT route, public IP, security groups, NACLs, DNS and OS firewall."],["What is the shared responsibility model?","AWS secures the cloud; customers secure what they put in the cloud."],["Multi-AZ vs read replica in RDS?","Multi-AZ is for availability and failover; read replicas scale reads."]],
+"Linux":[["What does chmod 755 script.sh mean?","Owner read/write/execute; group and others read/execute."],["Command to check disk usage by filesystem?","df -h"],["Command to see listening ports?","sudo ss -lntup"],["How to view logs of a systemd service?","sudo journalctl -u servicename"],["What is a zombie process?","A process that exited but stays in the process table until its parent collects its exit status."],["Hard link vs symlink?","A hard link points to the same inode; a symlink stores a pathname."],["What is an inode?","A structure holding file metadata and block references, excluding the filename."],["SIGTERM vs SIGKILL?","SIGTERM requests graceful exit; SIGKILL forces termination and cannot be caught."],["What does 2>/dev/null do?","Discards standard error output."],["> vs >> in the shell?","> overwrites a file; >> appends to it."],["What is the OOM killer?","A kernel mechanism that kills processes under severe memory pressure."],["Server is slow but CPU is low. What do you check?","Disk I/O, memory pressure, network latency, blocked processes and dependencies."],["What is /etc/fstab?","Config file listing filesystems to mount automatically, with options."],["Command to find files larger than 500M in /var?","sudo find /var -type f -size +500M -ls"]],
+"Networking":[["What does /24 mean?","The first 24 bits are the network; 256 addresses, typically 254 usable hosts."],["TCP vs UDP?","TCP is reliable and ordered; UDP is connectionless with lower overhead."],["What is the TCP three-way handshake?","SYN, SYN-ACK, ACK."],["Default port for SSH?","TCP 22"],["Default port for HTTPS?","TCP 443"],["Default port for PostgreSQL?","5432"],["What is DNS?","Translates domain names into records such as IP addresses."],["What is NAT?","Rewrites IP addresses (and sometimes ports) as traffic passes through a device."],["What does ARP do?","Maps IPv4 addresses to MAC addresses on a local network."],["What is a CNAME record?","Aliases one domain name to another domain name."],["What is mTLS?","Client and server authenticate each other using certificates."],["What is a 504 error?","A gateway or proxy did not get a timely response from upstream."],["What does 'connection refused' mean?","Host is reachable but nothing listens on the port, or a firewall actively rejects it."],["What is a VLAN?","Logically splits a Layer 2 network into separate broadcast domains."]],
+"DevOps":[["What is CI?","Frequently merging changes and validating them with automated builds and tests."],["Continuous Delivery vs Deployment?","Delivery keeps software release-ready; Deployment releases qualifying changes automatically."],["What is Infrastructure as Code?","Managing infrastructure through version-controlled, machine-readable configuration."],["git fetch vs git pull?","fetch downloads remote updates; pull fetches then integrates into the current branch."],["What is a Jenkinsfile?","A source-controlled file defining a Jenkins pipeline."],["CMD vs ENTRYPOINT in Docker?","ENTRYPOINT sets the main executable; CMD gives default arguments that can be overridden."],["Why use a multi-stage Docker build?","Separates build dependencies from the runtime image to keep it small."],["Readiness vs liveness probe?","Readiness decides if a container gets traffic; liveness decides if it is restarted."],["What is Terraform state?","Maps managed resources to real infrastructure along with their attributes."],["What does terraform plan do?","Previews proposed changes without applying them."],["What is Ansible idempotency?","Re-applying the same desired state changes nothing if the system is already correct."],["What is an SLO?","A measurable target for service reliability or performance."],["What is a canary deployment?","Releasing to a small share of traffic before expanding."],["How do you debug CrashLoopBackOff?","kubectl describe pod, and kubectl logs --previous."],["What is GitOps?","Version-controlled desired state drives deployment and reconciliation."],["Why not commit secrets to Git?","History exposes credentials; use secret managers and rotate leaked ones."]]
+};
+const $=document.getElementById('app'),sh=a=>[...a].sort(()=>Math.random()-.5);
+let S={};
+function best(k,v){try{const key='q_'+U+'_'+k;if(v!=null)localStorage.setItem(key,v);else return localStorage.getItem(key)}catch(e){}return null}
+let U=null;try{U=localStorage.getItem('q_session')}catch(e){}
+function users(){try{return JSON.parse(localStorage.getItem('q_users')||'{}')}catch(e){return{}}}
+async function hash(p){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('quiz:'+p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function profs(){try{return JSON.parse(localStorage.getItem('q_profiles')||'{}')}catch(e){return{}}}
+function adm(){try{return localStorage.getItem('q_admin')}catch(e){return null}}
+const BOTTLE=`<div class="bt" id="bt"><svg viewBox="0 0 140 260" width="130" height="230" aria-hidden="true"><defs><clipPath id="bc"><path d="M55 30h30v50c0 15 35 25 35 55v95a15 15 0 0 1-15 15H35a15 15 0 0 1-15-15v-95c0-30 35-40 35-55z"/></clipPath><linearGradient id="lg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><g clip-path="url(#bc)"><rect width="140" height="260" fill="rgba(160,180,255,.15)"/><g id="liq" style="transform:translateY(245px);transition:transform .9s cubic-bezier(.3,1.3,.5,1)"><g class="wv"><path fill="url(#lg)" d="M-70 0q17.5-10 35 0t35 0 35 0 35 0 35 0 35 0 35 0 35 0V260H-70z"/></g><circle class="bb" cx="45" cy="120" r="4" style="animation-delay:-1s"/><circle class="bb" cx="75" cy="140" r="3" style="animation-delay:-2s;animation-duration:2.4s"/><circle class="bb" cx="98" cy="110" r="5" style="animation-delay:-.4s;animation-duration:3.6s"/><circle class="bb" cx="60" cy="90" r="2.5" style="animation-delay:-1.6s"/></g></g><path d="M55 30h30v50c0 15 35 25 35 55v95a15 15 0 0 1-15 15H35a15 15 0 0 1-15-15v-95c0-30 35-40 35-55z" fill="none" stroke="rgba(150,170,255,.85)" stroke-width="3"/><path d="M32 140v70" stroke="rgba(255,255,255,.5)" stroke-width="4" stroke-linecap="round"/><rect id="cork" x="52" y="18" width="36" height="16" rx="4" fill="#b45309"/></svg></div>`;
+const LAMP=`<button class="lamp" id="lamp" type="button" aria-label="Pull the lamp cord"><svg viewBox="0 0 200 170" width="220" height="187"><defs><linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#f472b6"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><line x1="100" y1="0" x2="100" y2="42" stroke="#94a3b8" stroke-width="3"/><path d="M52 110 76 42H124L148 110Z" fill="url(#sh)"/><ellipse class="bulb" cx="100" cy="112" rx="15" ry="9"/><g class="chain"><line x1="136" y1="108" x2="136" y2="142" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3 2"/><circle cx="136" cy="148" r="7" fill="#fbbf24"/></g></svg></button>`;
+function auth(mode='login',msg='',v={}){
+ const L=mode=='login',val=(i,x)=>`value="${esc(x||'')}"`;
+ const fields=`<input id="u" placeholder="Username" autocomplete="username" ${val('u',v.u)}>${L?'':`<input id="e" type="email" placeholder="Email address" autocomplete="email" ${val('e',v.e)}><input id="ph" type="tel" placeholder="Contact number, e.g. +919876543210" autocomplete="tel" ${val('ph',v.ph)}>`}<input id="p" type="password" placeholder="Password (min 6 characters)" autocomplete="${L?'current-password':'new-password'}"><div class="err">${msg}</div><button class="pri" id="go">${L?'Log in':'Sign up'}</button><button class="lnk" id="sw" type="button">${L?'Need an account? Sign up':'Have an account? Log in'}</button>`;
+ $.innerHTML=L?`<div style="text-align:center"><h1>🧠 DevOps Interview <span class="g">Quiz</span></h1><p class="s" style="margin-bottom:6px">Fill the bottle to log in 🍾</p></div>${BOTTLE}<div class="card pop">${fields}</div>`
+ :`<div class="room${v.on?' on':''}" id="room"><div class="cone"></div>${LAMP}<p class="hint" id="ht">${v.on?'Lights on! Create your account ✨':'Pull the lamp cord to switch on the light 💡'}</p><div class="card" id="fc">${fields}</div></div>`;
+ const g=i=>(document.getElementById(i)||{value:''}).value.trim(),pw=()=>document.getElementById('p').value;
+ const room=document.getElementById('room'),lock=()=>document.querySelectorAll('#fc input,#fc button').forEach(x=>x.disabled=!room.classList.contains('on'));
+ if(room){lock();document.getElementById('lamp').onclick=()=>{const b=document.getElementById('lamp');b.classList.add('pull');setTimeout(()=>b.classList.remove('pull'),400);room.classList.toggle('on');const on=room.classList.contains('on');document.getElementById('ht').textContent=on?'Lights on! Create your account ✨':'Pull the lamp cord to switch on the light 💡';lock();if(on)setTimeout(()=>document.getElementById('u').focus(),500)}}
+ const lvl=()=>{const l=document.getElementById('liq');if(!l)return;const f=Math.min(1,Math.min(g('u').length,8)/8*.4+Math.min(pw().length,8)/8*.6);l.style.transform=`translateY(${245-f*140}px)`};
+ if(L){['u','p'].forEach(i=>document.getElementById(i).addEventListener('input',lvl));setTimeout(lvl,100)}
+ const go=async()=>{
+  const n=g('u').toLowerCase(),p=pw(),e=g('e'),ph=g('ph').replace(/[\s\-()]/g,''),all=users(),P=profs(),er=m=>{const b=document.getElementById('bt');if(b){b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}auth(mode,m,{u:n,e,ph,on:1})};
+  if(!/^[a-z0-9_]{3,20}$/.test(n))return er('Username: 3-20 letters, numbers or _');
+  if(!L){
+   if(!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(e))return er('Enter a valid email address');
+   if(!/^\+?\d{7,15}$/.test(ph))return er('Enter a valid contact number (7-15 digits)');
+  }
+  if(p.length<6)return er('Password must be at least 6 characters');
+  const h=await hash(p);
+  if(L){if(all[n]!==h)return er('Wrong username or password')}
+  else{
+   if(all[n])return er('Username already taken');
+   if(Object.values(P).some(x=>x.email==e.toLowerCase()))return er('Email already registered');
+   all[n]=h;P[n]={email:e.toLowerCase(),phone:ph,joined:new Date().toISOString().slice(0,10)};
+   try{localStorage.setItem('q_users',JSON.stringify(all));localStorage.setItem('q_profiles',JSON.stringify(P))}catch(x){return er('Storage unavailable in this browser')}
+  }
+  U=n;try{localStorage.setItem('q_session',n)}catch(x){}
+  let ok=true;if(!L)ok=await regRemote(n,e.toLowerCase(),ph);
+  if(L){document.getElementById('cork').classList.add('popc');document.getElementById('liq').style.transform='translateY(95px)';await new Promise(r=>setTimeout(r,850))}
+  home();if(!L)toast(ok?'✅ Account created':'Account saved on this device only (cloud sync unavailable)')};
+ document.getElementById('go').onclick=go;
+ document.getElementById('p').onkeydown=e=>{if(e.key=='Enter')go()};
+ document.getElementById('sw').onclick=()=>auth(L?'signup':'login');
+}
+function toast(m){let t=document.getElementById('tt');if(!t){t=document.createElement('div');t.id='tt';t.className='chip';t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9;padding:10px 18px;background:var(--ac);color:#fff';document.body.appendChild(t)}t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',3500)}
+async function exportXl(){
+ try{
+  if(!DB||!(await isOwn()))return toast('Only the owner can export');
+  const [a,b]=await Promise.all([DB.collection('signups').orderBy('ts','asc').get(),DB.collection('scores').get().catch(()=>({docs:[]}))]);
+  const B={};b.docs.forEach(d=>{const x=d.data();B[x.name]=x.pts});
+  const rows=a.docs.map(d=>{const x=d.data();return{Username:x.username,Email:x.email,Phone:x.phone,Joined:x.joined,'Best Points':B[x.username]||0}});
+  if(!rows.length)return toast('No signups yet');
+  const dl=await claude.use('downloads');if(!dl)return toast('Downloads unavailable in this view');
+  try{if(!window.XLSX)throw 0;const ws=XLSX.utils.json_to_sheet(rows),wb=XLSX.utils.book_new();ws['!cols']=[{wch:16},{wch:30},{wch:16},{wch:12},{wch:12}];XLSX.utils.book_append_sheet(wb,ws,'Users');
+   await dl.save({filename:'quiz-users.xlsx',data:XLSX.write(wb,{type:'array',bookType:'xlsx'})});toast('📥 Excel ready: '+rows.length+' users')}
+  catch(e){if(e&&e.code=='declined')return;
+   const f=v=>'"'+String(/^[=+\-@]/.test(v)&&!/^\+\d+$/.test(v)?"'"+v:v).replace(/"/g,'""')+'"',k=Object.keys(rows[0]);
+   await dl.save({filename:'quiz-users.csv',data:[k.map(f).join(','),...rows.map(r=>k.map(c=>f(r[c])).join(','))].join('\n')});toast('📥 CSV saved: '+rows.length+' users')}
+ }catch(e){toast('Export failed or cancelled')}
+}
+function logout(){U=null;try{localStorage.removeItem('q_session')}catch(e){}auth()}
+let DB=null,UR=null,DBP=Promise.resolve(null),URP=Promise.resolve(null);
+try{if(window.claude){DBP=claude.use('db').then(d=>DB=d).catch(()=>null);URP=claude.use('user').then(u=>{UR=u;ownerBtn();return u}).catch(()=>null)}}catch(e){}
+let OWN=false;
+async function isOwn(){if(OWN)return true;try{await Promise.all([DBP,URP])}catch(e){}
+ try{if(UR&&UR.isOwner())return OWN=true}catch(e){}
+ try{if(DB){await DB.collection('signups').limit(1).get();return OWN=true}}catch(e){}
+ return false}
+async function ownerBtn(){try{if(!document.getElementById('exw')||!(await isOwn()))return;const w=document.getElementById('exw');if(w&&!w.firstChild){w.innerHTML='<button class="lnk" id="ex">📥 Excel (owner)</button>';document.getElementById('ex').onclick=exportXl}}catch(e){}}
+try{Promise.all([DBP,URP]).then(()=>ownerBtn())}catch(e){}
+async function regRemote(n,e,ph){try{await Promise.all([DBP,URP]);if(!DB||!UR)return false;const id=await UR.id();await DB.collection('signups').doc(String(id)).set({username:n,email:e,phone:ph,joined:new Date().toISOString().slice(0,10),ts:Date.now()});return true}catch(x){return false}}
+function lbLocal(){try{return JSON.parse(localStorage.getItem('q_lb')||'{}')}catch(e){return{}}}
+async function lbSave(){
+ const r={name:U,pts:S.pts,sc:S.sc,k:S.k,ts:Date.now()};
+ const l=lbLocal();if(!l[U]||l[U].pts<r.pts){l[U]=r;try{localStorage.setItem('q_lb',JSON.stringify(l))}catch(e){}}
+ if(DB)try{const d=DB.collection('scores').doc(U),o=await d.get();if(!o.exists||o.data().pts<r.pts)await d.set(r)}catch(e){}
+}
+async function lbShow(){
+ $.innerHTML=`<div class="top"><button class="lnk" id="bk">← Back</button></div><h1>🏆 <span class="g">Leaderboard</span></h1><p class="s" id="ls">Loading top 10…</p><div id="ll"></div>`;
+ document.getElementById('bk').onclick=home;
+ let rows=null,g=false;
+ if(DB)try{const q=await DB.collection('scores').orderBy('pts','desc').limit(10).get();rows=q.docs.map(d=>d.data());g=true}catch(e){}
+ if(!rows)rows=Object.values(lbLocal()).sort((a,b)=>b.pts-a.pts).slice(0,10);
+ document.getElementById('ls').textContent=(g?'🌍 Global top 10':'📱 Top 10 on this device')+' · best round score per player';
+ document.getElementById('ll').innerHTML=rows.length?rows.map((r,i)=>`<div class="lb${r.name==U?' me':''}" style="animation-delay:${i*.05}s"><span class="rk">${['🥇','🥈','🥉'][i]||i+1}</span><span class="nm">${esc(String(r.name))}<br><small>${esc(String(r.k))} · ${+r.sc}/10 correct</small></span><span class="pt">⭐ ${+r.pts}</span></div>`).join(''):'<div class="card">No scores yet. Play a round to get on the board! 🚀</div>';
+}
+const META={AWS:['☁️','#f59e0b','#ef4444'],Linux:['🐧','#10b981','#06b6d4'],Networking:['🌐','#3b82f6','#8b5cf6'],DevOps:['🚀','#8b5cf6','#ec4899'],Mixed:['🎲','#ec4899','#f59e0b']};
+let T;
+function home(){
+ if(!U)return auth();
+ clearInterval(T);const all=Object.values(D).flat();
+ $.innerHTML=`<div class="top"><span class="chip">👋 ${esc(U)}</span><span><button class="lnk" id="lb">🏆 Leaderboard</button><span id="exw"></span><button class="lnk" id="lo">Log out</button></span></div><h1>DevOps Interview <span class="g">Quiz</span></h1><p class="s">Beat the clock, build streaks, ace your interview.</p><div class="grid">`+
+ [...Object.keys(D),'Mixed'].map(k=>{const m=META[k],n=(k=='Mixed'?all:D[k]).length,b=best(k);return `<button class="cat" data-k="${k}" style="--c1:${m[1]};--c2:${m[2]}"><em>${m[0]}</em><b>${k}</b><span>${n} questions · 15s each</span>${b?`<i>🏆 ${b}/10</i>`:''}</button>`}).join('')+`</div>`;
+ $.querySelectorAll('.cat').forEach(b=>b.onclick=()=>start(b.dataset.k));
+ document.getElementById('lo').onclick=logout;document.getElementById('lb').onclick=lbShow;ownerBtn();
+}
+function start(k){
+ const pool=k=='Mixed'?Object.keys(D).flatMap(c=>D[c].map(x=>[...x,c])):D[k].map(x=>[...x,k]);
+ const qs=sh(pool).slice(0,10).map(([q,a,c])=>{
+  const w=sh(D[c].filter(x=>x[1]!==a)).slice(0,3).map(x=>x[1]);
+  return{q,a,c,o:sh([a,...w])}});
+ S={k,qs,i:0,sc:0,st:0,pts:0,miss:[]};show();
+}
+function show(){
+ clearInterval(T);
+ const x=S.qs[S.i],p=S.i/S.qs.length*100;S.t=15;
+ $.innerHTML=`<div class="bar"><i style="width:${p}%"></i></div><div class="row"><span class="chip">${META[S.k][0]} ${S.k} · ${S.i+1}/${S.qs.length}</span><span class="chip">🔥 ${S.st} · ⭐ ${S.pts}</span></div><div class="tm"><i id="tb"></i></div>
+ <div class="card pop" id="qc"><h2>${esc(x.q)}</h2>${x.o.map((o,j)=>`<button class="opt" data-j="${j}">${esc(o)}</button>`).join('')}<div id="nx"></div></div>`;
+ $.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(b,x));
+ const tb=document.getElementById('tb');
+ T=setInterval(()=>{S.t-=.1;tb.style.width=Math.max(S.t,0)/15*100+'%';if(S.t<=5)tb.classList.add('lo');if(S.t<=0)pick(null,x)},100);
+}
+function pick(b,x){
+ clearInterval(T);
+ const ok=!!b&&x.o[b.dataset.j]===x.a,c=document.getElementById('qc');
+ $.querySelectorAll('.opt').forEach(o=>{o.disabled=true;if(x.o[o.dataset.j]===x.a)o.classList.add('ok')});
+ let m;
+ if(ok){S.sc++;S.st++;const g=10+Math.min(S.st,5)*2+Math.ceil(S.t);S.pts+=g;m=`✅ Correct! +${g} pts${S.st>2?' 🔥 streak x'+S.st:''}`}
+ else{S.st=0;S.miss.push(x);if(b)b.classList.add('no');c.classList.remove('pop');void c.offsetWidth;c.classList.add('shake');m=b?'❌ Not quite, the right answer is highlighted.':'⏰ Time is up!'}
+ const last=S.i==S.qs.length-1;
+ document.getElementById('nx').innerHTML=`<p class="fb">${m}</p><button class="pri" id="n">${last?'See results 🎉':'Next →'}</button>`;
+ document.getElementById('n').onclick=()=>{S.i++;last?end():show()};
+}
+function end(){
+ const b=+best(S.k)||0,nb=S.sc>b;if(nb)best(S.k,S.sc);
+ const em=S.sc>=8?'🏆':S.sc>=5?'💪':'📚';
+ $.innerHTML=`<div class="card pop" style="text-align:center"><div style="font-size:3rem">${em}</div><div class="big">${S.sc}/${S.qs.length}</div><p><span class="chip">⭐ ${S.pts} pts</span> ${nb&&S.sc?'<span class="chip">🆕 New best!</span>':''}</p><p>${S.sc>=8?'Interview ready!':S.sc>=5?'Solid, keep revising.':'Review and go again.'}</p>
+ <button class="pri" id="r">Play again</button> <button class="pri" id="lbb" style="background:linear-gradient(135deg,#f59e0b,#ec4899)">🏆 Leaderboard</button> <button class="pri" id="h" style="background:var(--mu)">Home</button></div>
+ ${S.miss.length?`<div class="card pop"><b>📝 Review mistakes</b><ul>${S.miss.map(m=>`<li>${esc(m.q)}<br><small>✔ ${esc(m.a)}</small></li>`).join('')}</ul></div>`:''}`;
+ document.getElementById('r').onclick=()=>start(S.k);document.getElementById('h').onclick=home;document.getElementById('lbb').onclick=lbShow;lbSave();
+ if(S.sc>=8)confetti();
+}
+function confetti(){const c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:9';c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);const g=c.getContext('2d'),P=Array.from({length:150},()=>({x:Math.random()*c.width,y:-Math.random()*c.height/2,v:2+Math.random()*4,r:4+Math.random()*5,h:Math.random()*360,s:Math.random()*2-1}));let f=0;(function a(){g.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.v;p.x+=p.s;g.fillStyle=`hsl(${p.h},90%,60%)`;g.fillRect(p.x,p.y,p.r,p.r*1.6)});++f<260?requestAnimationFrame(a):c.remove()})()}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c])}
+home();
+</script></body></html>
